@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <!-- //渲染登录页面在这里 -->
+   <router-view></router-view>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  //生命周期函数网页加载完就执行
+  mounted(){
+      this.$axios({
+        url:"https://api.github.com/users",
+        method:"get",   // method在vue中只能发起get请求 params用与post请求
+
+      }).then(res=>{
+        //测试请求是否发起和返回数据
+          console.log(res)
+      })
   }
 }
+
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
